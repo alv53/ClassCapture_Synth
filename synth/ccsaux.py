@@ -2,6 +2,13 @@
 from numpy import argsort, array, append, real, sort, copy, linspace, repeat, fft, real
 from scipy.io import wavfile
 from time import time
+import subprocess
+
+def mp4_to_wav(target_wav, input_mp4):
+    # Takes an input mp4 file and generates a resulting wavfile. Will be useful for taking incoming mp4 files and processing the audio components.
+    # Requires ffmpeg to be setup on the machine. https://www.ffmpeg.org
+    command = "ffmpeg -i " + input_mp4 + " " + target_wav + " 2> /dev/null"
+    subprocess.call(command, shell=True)
 
 def flatten(list_of_lists):
     ret = array(list_of_lists[0], dtype = list_of_lists[0].dtype)
